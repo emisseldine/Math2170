@@ -28,7 +28,7 @@ def lqr(A, B, C, a, b, T, rho):     #
     z = lstsq_constraint(Ablock, np.zeros(len(Ablock)), Cblock, dblock)
     
     x = np.array([z[i*n:(i+1)*n] for i in range(T+1)])
-    u = np.array([z[n*T+i*m: n*T+(i+1)*m] for i in range(T)])
+    u = np.array([z[n*(T+1)+(i)*m: n*(T+1)+(i+1)*m] for i in range(T)])
     y = np.array([C @ xt for xt in x])
     return x, u, y 
 
@@ -57,6 +57,7 @@ plt.scatter(x, y)
 plt.plot(xpl_left, ypl_left, 'red')
 plt.plot(xpl_right, ypl_right, 'green')
 plt.show()
+
 
 ## Example 2
 A = np.array([
@@ -106,7 +107,7 @@ plt.show()
 
 #Specific examples
 for k in range(len(rhos)):
-    plt.plot(np.arange(3,T), u[k,3:])
+    plt.plot(np.arange(T), u[k])
     plt.xlabel('t\n rho = ' + str(rhos[k]))
     plt.ylabel('u_t')
     plt.ylim(-0.5,0.6)
