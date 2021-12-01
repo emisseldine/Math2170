@@ -79,6 +79,7 @@ plt.ion()
 plt.plot(np.arange(T+1), yno.T)
 plt.xlabel("t\n No Control")
 plt.ylabel("y")
+plt.ylim(-0.1,0.5)
 plt.show()
 
 #Optimal Tradeoff Curve
